@@ -1,6 +1,6 @@
 # Relatório Técnico — Crypto Delphi (UTCTF 2021)
 
-> Versão convertida para README a partir do relatório em PDF. Fonte original: Relatório_Desafio_Crito_Delphi.pdf. :contentReference[oaicite:1]{index=1}
+> Versão convertida para README a partir do relatório em PDF. Fonte original: Relatório_Desafio_Crito_UTCTF_21_Delphi.pdf.
 
 ## Resumo
 Exploração prática de **padding oracle** em um serviço que utiliza **AES-CBC + PKCS#7**.  
