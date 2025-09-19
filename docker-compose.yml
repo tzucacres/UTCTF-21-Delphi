@@ -1,0 +1,28 @@
+services:
+  oracle:
+    build:
+      context: .
+      dockerfile: docker/oracle/Dockerfile
+    container_name: delphi-oracle
+    ports:
+      - "4356:4356"
+    healthcheck:
+      # simple TCP open/close check; the server now tolerates quick disconnects
+      test: ["CMD-SHELL", "bash -lc 'exec 3<>/dev/tcp/127.0.0.1/4356' || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  solver:
+    build:
+      context: .
+      dockerfile: docker/solver/Dockerfile
+    container_name: delphi-solver
+    volumes:
+      - ./:/app
+    working_dir: /app
+    depends_on:
+      oracle:
+        condition: service_healthy
+    entrypoint: ["sleep", "infinity"]
